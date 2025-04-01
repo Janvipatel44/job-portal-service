@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Query, Param } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { Job } from './job.schema';
 
@@ -14,6 +14,21 @@ export class JobsController {
   @Get()
   findAll(): Promise<Job[]> {
     return this.jobsService.findAll();
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string): Promise<Job | null> {
+    return this.jobsService.findById(id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() jobData: Partial<Job>): Promise<Job | null> {
+    return this.jobsService.update(id, jobData);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string): Promise<Job | null> {
+    return this.jobsService.delete(id);
   }
 
   @Get('search')

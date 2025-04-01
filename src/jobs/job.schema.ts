@@ -1,6 +1,8 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document} from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 export const JobSchema = new Schema({
+  _id: { type: String, default: uuidv4 },
   title: { type: String, required: true },
   company: { type: String, required: true },
   location: { type: String, required: true },
@@ -10,8 +12,8 @@ export const JobSchema = new Schema({
     min: { type: Number, required: true },
     max: { type: Number, required: true },
   },
-  benefits: [String], 
-  extras: Schema.Types.Mixed, 
+  benefits: [String],
+  extras: Schema.Types.Mixed,
   createdAt: { type: Date, default: Date.now },
 });
 
