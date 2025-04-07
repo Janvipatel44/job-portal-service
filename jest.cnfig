@@ -1,0 +1,5 @@
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testMatch: ['**/*.spec.ts'], // Make sure Jest picks up files with the .spec.ts extension
+};

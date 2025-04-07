@@ -14,7 +14,11 @@ export const JobSchema = new Schema({
   },
   benefits: [String],
   extras: Schema.Types.Mixed,
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: () => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0); 
+    return date; 
+  } },
 });
 
 export interface Job extends Document {
